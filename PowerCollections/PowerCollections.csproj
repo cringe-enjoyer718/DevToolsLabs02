@@ -1,9 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+    	<PackageId>cringe-enjoyer718.PowerCollections</PackageId>
+    	<Title>Wintellect.PowerCollections</Title>
+    	<Description>The Power Collections group of collection classes.</Description>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<Deterministic>false</Deterministic>
+		<VersionPrefix>0.0.1</VersionPrefix>
+    	<VersionSuffix>beta</VersionSuffix>
+		<RepositoryUrl>https://github.com/cringe-enjoyer718/DevToolsLabs02</RepositoryUrl>
 	</PropertyGroup>
 
 </Project>

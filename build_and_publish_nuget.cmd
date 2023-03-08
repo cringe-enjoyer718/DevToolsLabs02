@@ -1,0 +1,1 @@
+dotnet nuget push "PowerCollections\bin\Debug\cringe-enjoyer718.PowerCollections*.nupkg" --api-key "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" --source "github_nastya" --skip-duplicate

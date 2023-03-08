@@ -33,6 +33,16 @@ namespace PowerCollections
             array = new T[capacity];
             
         }
+        public Stack()
+        {
+            capacity = 100;
+            if (capacity <= 0)
+            {
+                throw new ArgumentException("Максимальное количество элементов стека отрицательное или равно нулю");
+            }
+            array = new T[capacity];
+
+        }
 
         public int Count //счетчик количества элементов
         {

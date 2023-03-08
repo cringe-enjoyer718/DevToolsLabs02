@@ -7,7 +7,7 @@
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<Deterministic>false</Deterministic>
-		<VersionPrefix>0.0.1</VersionPrefix>
+		<VersionPrefix>0.0.2</VersionPrefix>
     	<VersionSuffix>beta</VersionSuffix>
 		<RepositoryUrl>https://github.com/cringe-enjoyer718/DevToolsLabs02</RepositoryUrl>
 	</PropertyGroup>

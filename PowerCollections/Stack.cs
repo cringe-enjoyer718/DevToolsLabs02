@@ -13,7 +13,7 @@ namespace PowerCollections
         // количество элементов в массиве по умолчанию
 
         public IEnumerator<T> GetEnumerator()
-        
+        {
             for (int i = array.Length - 1; i > -1; i--)
             {
                 yield return array[i];

@@ -1,0 +1,22 @@
+name: Task6_1
+
+on: push
+
+jobs:
+
+  Task6_1:
+
+    runs-on: windows-latest 
+
+    steps:
+
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+      
+    - name: dotnet build
+      run: dotnet build
+      
+    - name: dotnet test
+      run: dotnet test --no-build

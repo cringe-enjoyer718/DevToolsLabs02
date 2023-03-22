@@ -1,0 +1,47 @@
+name: Task6_2
+on: workflow_dispatch
+  
+jobs:
+
+  Task6_2:
+
+    runs-on: windows-latest 
+    
+    permissions:
+      repository-projects: write
+      packages: write
+      contents: write
+      
+    steps:
+
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: dotnet pack
+      run: dotnet pack
+      
+    - name: Publish Package
+      run: dotnet nuget push "PowerCollections\bin\Debug\cringe-enjoyer718.PowerCollections*.nupkg" -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/cringe-enjoyer718/index.json --skip-duplicate
+      
+    - name: getprefix
+      id: getprefix
+      uses: mavrosxristoforos/get-xml-info@1.1.1
+      with: 
+        xml-file: 'PowerCollections/PowerCollections.csproj'
+        xpath: '//VersionPrefix'
+        
+    - name: getsuffix
+      id: getsuffix
+      uses: mavrosxristoforos/get-xml-info@1.1.1
+      with: 
+        xml-file: 'PowerCollections/PowerCollections.csproj'
+        xpath: '//VersionSuffix'  
+        
+    - name: release
+      uses: ncipollo/release-action@v1.12.0
+      with: 
+        artifacts: 'PowerCollections\bin\Debug\cringe-enjoyer718.PowerCollections.*${{ steps.getprefix.outputs.info }}*.nupkg'
+        tag: 'v${{ steps.getprefix.outputs.info }}-${{ steps.getsuffix.outputs.info }}'
+        version: 'v${{ steps.getprefix.outputs.info }}-${{ steps.getsuffix.outputs.info }}'

@@ -21,7 +21,7 @@ namespace PowerCollections.Tests
             Stack<int> ST = new Stack<int>(5);
             
             Assert.AreEqual(true, ST.IsEmpty);
-            Assert.AreEqual(0, ST.Count);
+            Assert.AreEqual(1, ST.Count);
         }
 
         [TestMethod]

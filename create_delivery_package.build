@@ -1,0 +1,37 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<PropertyGroup>
+    <SourceCode>true</SourceCode>
+</PropertyGroup>
+
+<Import Project="MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+
+<Target Name="Build">
+<Exec Command="dotnet test" ContinueOnError="false"/>
+<Exec Command="docfx docfx_project\docfx.json"/>
+
+<Version VersionFile="version.txt" BuildType="Increment">
+    <Output TaskParameter="Build" PropertyName="Build"/>
+    <Output TaskParameter="Minor" PropertyName="Minor"/>
+    <Output TaskParameter="Major" PropertyName="Major"/>
+</Version>
+<Exec Command="dotnet pack -c Release -p:PackageVersion=$(Major).$(Minor).$(Build)"/>
+
+<ItemGroup>
+    <Product Include="PowerCollections\bin\Release\cringe-enjoyer718.PowerCollections.$(Major).$(Minor).$(Build).nupkg" />
+    <Docs Include="docfx_project\PowerCollections_doc\**\*.*" />
+    <SourceCode Include="PowerCollections\**" Exclude="PowerCollections\bin\**;PowerCollections\obj\**;PowerCollections\.vs\**" Condition="$(AddSourceCode) == 'true'"/>
+</ItemGroup>
+<PropertyGroup>
+    <PackDirectory>cringe-enjoyer718.PowerCollections.$([System.DateTime]::Now.ToString(MM\dd\yyyy)).$(Major).$(Minor).$(Build)</PackDirectory>
+</PropertyGroup>
+
+<Copy SourceFiles="@(Product)" DestinationFolder="$(PackDirectory)\bin\%(RecursiveDir)" />
+<Copy SourceFiles="@(Docs)" DestinationFolder="$(PackDirectory)\PowerCollections_doc\%(RecursiveDir)" />
+<Copy SourceFiles="@(SourceCode)" DestinationFolder="$(PackDirectory)\src\%(RecursiveDir)" Condition="$(AddSourceCode) == 'true'"/>
+
+<ZipDirectory SourceDirectory="$(PackDirectory)" Overwrite="true" DestinationFile="$(MSBuildProjectDirectory)\$(PackDirectory).zip" />
+
+<RemoveDir Directories="$(PackDirectory)" />
+</Target>
+
+</Project>

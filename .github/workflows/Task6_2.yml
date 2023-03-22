@@ -44,4 +44,4 @@ jobs:
       with: 
         artifacts: 'PowerCollections\bin\Debug\cringe-enjoyer718.PowerCollections.*${{ steps.getprefix.outputs.info }}*.nupkg'
         tag: 'v${{ steps.getprefix.outputs.info }}-${{ steps.getsuffix.outputs.info }}'
-        version: 'v${{ steps.getprefix.outputs.info }-${{ steps.getsuffix.outputs.info }}}'
+        version: 'v${{ steps.getprefix.outputs.info }}-${{ steps.getsuffix.outputs.info }}'
